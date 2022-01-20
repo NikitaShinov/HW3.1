@@ -39,11 +39,11 @@ struct ContentView: View {
         ZStack{
             Color.gray.ignoresSafeArea()
             VStack {
-                ColorCircle(color: .red, opacity: activeLight == .red ? 1 : 0.5)
+                ColorCircle(color: .red, opacity: activeLight == .red ? 1 : 0.4)
                     .padding()
-                ColorCircle(color: .yellow, opacity: activeLight == .yellow ? 1 : 0.5)
+                ColorCircle(color: .yellow, opacity: activeLight == .yellow ? 1 : 0.4)
                     .padding()
-                ColorCircle(color: .green, opacity: activeLight == .green ? 1 : 0.5)
+                ColorCircle(color: .green, opacity: activeLight == .green ? 1 : 0.4)
                     .padding()
                 Spacer()
                 ButtonPressed(title: activeTitle,
