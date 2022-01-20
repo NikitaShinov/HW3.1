@@ -14,13 +14,17 @@ struct ButtonPressed: View {
     var body: some View {
         Button(action: action) {
             Text(title)
+                .font(.largeTitle)
+                .fontWeight(.bold)
                 .foregroundColor(.black)
                 .bold()
-                .background(Color.indigo)
-                .frame(width: 150, height: 50)
-                .cornerRadius(15, antialiased: true)
             
         }
+        .frame(width: 200, height: 60)
+        .background(Color.indigo)
+        .cornerRadius(35)
+        
+        
     }
 }
 

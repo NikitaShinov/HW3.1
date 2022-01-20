@@ -14,13 +14,17 @@ enum TrafficLightColor {
 }
 
 struct ContentView: View {
-    
-    @State private var initialButtonName = "Start!"
-    @State private var secondaryButtonName = "Next!"
     @State private var activeLight = TrafficLightColor.red
+    @State private var activeTitle = "Start!"
     
-    private func changeTrafficColor(color: TrafficLightColor) {
-        switch color {
+    private func changeButtonName() {
+        if activeTitle == "Start!" {
+            activeTitle = "Next!"
+        }
+    }
+    
+    private func changeTrafficColor() {
+        switch activeLight {
         case .red:
             activeLight = .yellow
         case .yellow:
@@ -28,21 +32,26 @@ struct ContentView: View {
         case .green:
             activeLight = .red
         }
+        changeButtonName()
     }
+    
     var body: some View {
-        VStack{
-            ColorCircle(color: .red, opacity: 1)
-                .padding()
-            ColorCircle(color: .yellow, opacity: 1)
-                .padding()
-            ColorCircle(color: .green, opacity: 1)
-                .padding()
-            
-            
+        ZStack{
+            Color.gray.ignoresSafeArea()
+            VStack {
+                ColorCircle(color: .red, opacity: activeLight == .red ? 1 : 0.5)
+                    .padding()
+                ColorCircle(color: .yellow, opacity: activeLight == .yellow ? 1 : 0.5)
+                    .padding()
+                ColorCircle(color: .green, opacity: activeLight == .green ? 1 : 0.5)
+                    .padding()
+                Spacer()
+                ButtonPressed(title: activeTitle,
+                              action:{ changeTrafficColor() })
+            }
         }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
